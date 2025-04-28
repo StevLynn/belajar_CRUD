@@ -64,7 +64,7 @@ class PendudukController extends Controller
             return redirect()->route('bumil.create', ['penduduk_id' => $penduduk->id]);
         } elseif ($penduduk->kategori == 'Pasca Persalinan') {
             // Arahkan ke form Pasca Persalinan
-            return redirect()->route('pasca.create', ['penduduk_id' => $penduduk->id]);
+            return redirect()->route('pasper.create', ['penduduk_id' => $penduduk->id]);
         }
 
         // Arahkan ke halaman utama jika kategori tidak dikenali

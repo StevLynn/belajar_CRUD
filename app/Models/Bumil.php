@@ -20,6 +20,20 @@ class Bumil extends Model
         'tinggi_badan',
         'berat_badan_sebelum_hamil',
         'berat_badan_saat_ini',
+        'indeks_massa_tubuh',
+        'kadar_hemoglobin',
+        'LILA',
+        'menggunakan_alat_kontrasepsi',
+        'meerokok_terpapar',
+        'sumber_air_minum',
+        'fasilitas_BAB',
+        'longitude',
+        'latitude',
+        'mendapatkan_tablet_tambah_darah',
+        'meminum_table_tambah_darah',
+        'penyuluhan_KIE',
+        'fasilitas_layanan_rujukan',
+        'fasilitas_bantuan_sosial',
     ];
 
     public function penduduk()

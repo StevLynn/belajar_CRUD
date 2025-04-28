@@ -79,6 +79,8 @@
     <!-- Step 2: Data Baduta -->
     <div class="step" id="step2" style="display:none;">
         <h2>Data Baduta</h2>
+        <!-- Tambahkan input untuk penduduk_id bayi -->
+        <input type="hidden" name="penduduk_id" value="{{ $penduduk_id }}"> 
         <div>
             <label>Berat Badan (kg):</label>
             <input type="number" step="0.01" name="berat_badan" required>

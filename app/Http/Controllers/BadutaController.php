@@ -15,13 +15,11 @@ class BadutaController extends Controller
     }
 
     
-    public function create($penduduk_id)
+    public function create(Request $request)
     {
-        // Mendapatkan data penduduk berdasarkan id yang dikirim
-        $penduduk = Penduduk::findOrFail($penduduk_id);
-
-        // Menampilkan form Baduta
-        return view('baduta.create', compact('penduduk'));
+        $penduduks = Penduduk::all(); // ambil semua penduduk
+        $penduduk_id = $request->penduduk_id; // kalau ada penduduk_id bayi dikirim dari URL
+        return view('baduta.create', compact('penduduks', 'penduduk_id'));
     }
 
     public function store(Request $request)
@@ -80,7 +78,7 @@ class BadutaController extends Controller
             ]);
         }
 
-        return redirect()->route('baduta.index')->with('success', 'Data Baduta berhasil disimpan');
+        return redirect()->route('penduduk.index')->with('success', 'Data Baduta berhasil disimpan');
     }
 
     public function show($id)

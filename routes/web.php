@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TPKController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\BadutaController;
+use App\Http\Controllers\BumilController;
+use App\Http\Controllers\CatinController;
+use App\Http\Controllers\PasperController;
 use App\Http\Controllers\AuthController;
 // use Illuminate\Support\Facades\Route;
 
@@ -43,11 +46,11 @@ Route::delete('/penduduk/{penduduk}', [PendudukController::class, 'destroy'])->n
 Route::get('/baduta/create/{penduduk_id}', [BadutaController::class, 'create'])->name('baduta.create');
 Route::post('/baduta', [BadutaController::class, 'store'])->name('baduta.store');
 // Form Bumil
-Route::get('/bumil/create/{penduduk_id}', [bumilController::class, 'create'])->name('bumil.create');
-Route::post('/bumil', [bumilController::class, 'store'])->name('bumil.store');
+Route::get('/bumil/create/{penduduk_id}', [BumilController::class, 'create'])->name('bumil.create');
+Route::post('/bumil', [BumilController::class, 'store'])->name('bumil.store');
 // Form Catin
-Route::get('/catin/create/{penduduk_id}', [catinController::class, 'create'])->name('catin.create');
-Route::post('/catin', [catinController::class, 'store'])->name('catin.store');
+Route::get('/catin/create/{penduduk_id}', [CatinController::class, 'create'])->name('catin.create');
+Route::post('/catin', [CatinController::class, 'store'])->name('catin.store');
 // Form Pasca Persalinan
-Route::get('/pasca_persalinan/create/{penduduk_id}', [pasca_persalinanController::class, 'create'])->name('pasca_persalinan.create');
-Route::post('/pasca_persalinan', [pasca_persalinanController::class, 'store'])->name('pasca_persalinan.store');
+Route::get('/pasper/create/{penduduk_id}', [PasperController::class, 'create'])->name('pasper.create');
+Route::post('/pasper', [PasperController::class, 'store'])->name('pasper.store');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catin;
 use Illuminate\Http\Request;
+use App\Models\Penduduk;
 
 class CatinController extends Controller
 {
@@ -13,9 +14,10 @@ class CatinController extends Controller
         return view('catin.index', compact('catins'));
     }
 
-    public function create()
+    public function create($penduduk_id)
     {
-        return view('catin.create');
+        $penduduks = Penduduk::all(); // Ambil semua penduduk
+        return view('catin.create', compact('penduduks', 'penduduk_id'));
     }
 
     public function store(Request $request)
@@ -29,9 +31,15 @@ class CatinController extends Controller
             'no_hp' => 'required|string|max:16',
         ]);
 
-        Catin::create($request->all());
+        // Ambil data penduduk berdasarkan penduduk_id
+        $penduduk = Penduduk::find($request->penduduk_id);
 
-        return redirect()->route('catin.index')->with('success', 'Data Catin berhasil disimpan');
+        if ($penduduk) {
+            // Menyimpan data Baduta ke database
+            Catin::create($request->all());
+        }
+
+        return redirect()->route('penduduk.index')->with('success', 'Data Catin berhasil disimpan');
     }
 
     public function show($id)
@@ -42,8 +50,9 @@ class CatinController extends Controller
 
     public function edit($id)
     {
-        $catin = Catin::findOrFail($id);
-        return view('catin.edit', compact('catin'));
+        $bumil = Catin::findOrFail($id);
+        $penduduks = Penduduk::all();
+        return view('bumil.edit', compact('bumil', 'penduduks'));
     }
 
     public function update(Request $request, $id)

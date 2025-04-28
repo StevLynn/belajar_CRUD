@@ -43,6 +43,6 @@ class Penduduk extends Model
 
     public function pascaPersalinan()
     {
-        return $this->hasOne(PascaPersalinan::class);
+        return $this->hasOne(Pasper::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bumil;
+use App\Models\Penduduk;
 use Illuminate\Http\Request;
 
 class BumilController extends Controller
@@ -13,9 +14,11 @@ class BumilController extends Controller
         return view('bumil.index', compact('bumils'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('bumil.create');
+        $penduduks = Penduduk::all();
+        $penduduk_id = $request->penduduk_id;
+        return view('bumil.create', compact('penduduks', 'penduduk_id'));
     }
 
     public function store(Request $request)
@@ -29,11 +32,32 @@ class BumilController extends Controller
             'tinggi_badan' => 'required|integer',
             'berat_badan_sebelum_hamil' => 'required|integer',
             'berat_badan_saat_ini' => 'required|integer',
+            'indeks_massa_tubuh' => 'nullable|numeric',
+            'kadar_hemoglobin' => 'nullable|numeric',
+            'LILA' => 'nullable|numeric',
+            'menggunakan_alat_kontrasepsi' => 'nullable|string',
+            'meerokok_terpapar' => 'nullable|string',
+            'sumber_air_minum' => 'nullable|string',
+            'fasilitas_BAB' => 'nullable|string',
+            'longitude' => 'nullable|numeric',
+            'latitude' => 'nullable|numeric',
+            'mendapatkan_tablet_tambah_darah' => 'nullable|string',
+            'meminum_table_tambah_darah' => 'nullable|string',
+            'penyuluhan_KIE' => 'nullable|string',
+            'fasilitas_layanan_rujukan' => 'nullable|string',
+            'fasilitas_bantuan_sosial' => 'nullable|string',
         ]);
 
-        Bumil::create($request->all());
+        // Ambil data penduduk berdasarkan penduduk_id
+        $penduduk = Penduduk::find($request->penduduk_id);
 
-        return redirect()->route('bumil.index')->with('success', 'Data Bumil berhasil disimpan');
+        if ($penduduk) {
+            // Menyimpan data Baduta ke database
+            Bumil::create($request->all());
+        }
+
+
+        return redirect()->route('penduduk.index')->with('success', 'Data Bumil berhasil disimpan');
     }
 
     public function show($id)
@@ -45,7 +69,8 @@ class BumilController extends Controller
     public function edit($id)
     {
         $bumil = Bumil::findOrFail($id);
-        return view('bumil.edit', compact('bumil'));
+        $penduduks = Penduduk::all();
+        return view('bumil.edit', compact('bumil', 'penduduks'));
     }
 
     public function update(Request $request, $id)
@@ -59,6 +84,20 @@ class BumilController extends Controller
             'tinggi_badan' => 'required|integer',
             'berat_badan_sebelum_hamil' => 'required|integer',
             'berat_badan_saat_ini' => 'required|integer',
+            'indeks_massa_tubuh' => 'nullable|numeric',
+            'kadar_hemoglobin' => 'nullable|numeric',
+            'LILA' => 'nullable|numeric',
+            'menggunakan_alat_kontrasepsi' => 'nullable|string',
+            'meerokok_terpapar' => 'nullable|string',
+            'sumber_air_minum' => 'nullable|string',
+            'fasilitas_BAB' => 'nullable|string',
+            'longitude' => 'nullable|numeric',
+            'latitude' => 'nullable|numeric',
+            'mendapatkan_tablet_tambah_darah' => 'nullable|string',
+            'meminum_table_tambah_darah' => 'nullable|string',
+            'penyuluhan_KIE' => 'nullable|string',
+            'fasilitas_layanan_rujukan' => 'nullable|string',
+            'fasilitas_bantuan_sosial' => 'nullable|string',
         ]);
 
         $bumil = Bumil::findOrFail($id);
