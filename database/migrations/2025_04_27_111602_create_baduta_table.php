@@ -11,8 +11,7 @@ return new class extends Migration
         Schema::create('baduta', function (Blueprint $table) {
             $table->id();
             $table->foreignId('penduduk_id')->constrained('penduduk')->onDelete('cascade'); // ID bayi
-            $table->foreignId('penduduk_ibu_id')->constrained('penduduk')->onDelete('cascade'); // ID ibu (relasi ke tabel penduduk)
-            $table->integer('usia_kehamilan'); // Usia kehamilan saat bayi dilahirkan
+            $table->integer('penduduk_ibu_id'); // ID ibu (relasi ke tabel penduduk)
             $table->integer('jumlah_anak_kandung');
             $table->date('tanggal_lahir_anak_terakhir');
             $table->integer('berat_badan'); // Berat badan bayi

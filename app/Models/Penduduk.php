@@ -12,7 +12,7 @@ class Penduduk extends Model
     protected $table = 'penduduk';
 
     protected $fillable = [
-        'nik',
+        'NIK',
         'nama',
         'jenis_kelamin',
         'tanggal_lahir',

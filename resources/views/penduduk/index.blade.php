@@ -36,7 +36,7 @@
           @foreach ($penduduks as $index => $penduduk)
           <tr>
             <td>{{ $index + 1 }}</td> <!-- No urut -->
-            <td>{{ $penduduk->NIK }}</td>
+            <td>{{ $penduduk->nik }}</td>
             <td>{{ $penduduk->nama }}</td>
             <td>{{ $penduduk->tanggal_lahir }}</td>
             <td>{{ $penduduk->jenis_kelamin }}</td>

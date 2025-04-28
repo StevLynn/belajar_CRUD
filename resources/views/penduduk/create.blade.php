@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> DTambahata Penduduk</title>
+  <title> Tambah Data Penduduk</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +26,7 @@
 
     <div class="mb-3">
       <label for="NIK" class="form-label">NIK</label>
-      <input type="text" name="NIK" class="form-control" id="NIK" required maxlength="16" minlength="16">
+      <input type="text" name="NIK" class="form-control" id="NIK" required>
     </div>
 
     <div class="mb-3">
