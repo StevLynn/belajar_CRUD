@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catin;
-use Illuminate\Http\Request;
 use App\Models\Penduduk;
+use Illuminate\Http\Request;
 
 class CatinController extends Controller
 {
@@ -16,7 +16,7 @@ class CatinController extends Controller
 
     public function create($penduduk_id)
     {
-        $penduduks = Penduduk::all(); // Ambil semua penduduk
+        $penduduks = Penduduk::all();
         return view('catin.create', compact('penduduks', 'penduduk_id'));
     }
 
@@ -27,15 +27,33 @@ class CatinController extends Controller
             'nama' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'tanggal_lahir' => 'required|date',
+            'kelurahan' => 'required|string|max:255',
+            'kecamatan' => 'required|in:Ujung,Bacukiki,Bacukiki Barat,Soreang',
+            'RT' => 'required|string|max:10',
+            'RW' => 'required|string|max:10',
             'alamat' => 'required|string',
-            'no_hp' => 'required|string|max:16',
+            'tinggi_badan' => 'required|integer|min:0',
+            'berat_badan' => 'required|integer|min:0',
+            'indeks_massa_tubuh' => 'required|integer|min:0',
+            'kadar_hemoglobin' => 'required|integer|min:0',
+            'LILA' => 'required|integer|min:0',
+            'menggunakan_alat_kontrasepsi' => 'nullable|string',
+            'catin_wanita_meerokok_terpapar' => 'nullable|string',
+            'catin_pria_meerokok_terpapar' => 'nullable|string',
+            'sumber_air_minum' => 'nullable|string',
+            'fasilitas_BAB' => 'nullable|string',
+            'longitude' => 'required|numeric|between:-180,180',
+            'latitude' => 'required|numeric|between:-90,90',
+            'mendapatkan_tablet_tambah_darah' => 'nullable|string',
+            'meminum_table_tambah_darah' => 'nullable|string',
+            'penyuluhan_KIE' => 'nullable|string',
+            'fasilitas_layanan_rujukan' => 'nullable|string',
+            'fasilitas_bantuan_sosial' => 'nullable|string',
         ]);
-
-        // Ambil data penduduk berdasarkan penduduk_id
+        
         $penduduk = Penduduk::find($request->penduduk_id);
-
+        
         if ($penduduk) {
-            // Menyimpan data Baduta ke database
             Catin::create($request->all());
         }
 
@@ -50,9 +68,9 @@ class CatinController extends Controller
 
     public function edit($id)
     {
-        $bumil = Catin::findOrFail($id);
+        $catin = Catin::findOrFail($id);
         $penduduks = Penduduk::all();
-        return view('bumil.edit', compact('bumil', 'penduduks'));
+        return view('catin.edit', compact('catin', 'penduduks'));
     }
 
     public function update(Request $request, $id)
@@ -62,9 +80,30 @@ class CatinController extends Controller
             'nama' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'tanggal_lahir' => 'required|date',
+            'kelurahan' => 'required|string|max:255',
+            'kecamatan' => 'required|in:Ujung,Bacukiki,Bacukiki Barat,Soreang',
+            'RT' => 'required|string|max:10',
+            'RW' => 'required|string|max:10',
             'alamat' => 'required|string',
-            'no_hp' => 'required|string|max:16',
+            'tinggi_badan' => 'required|integer|min:0',
+            'berat_badan' => 'required|integer|min:0',
+            'indeks_massa_tubuh' => 'required|integer|min:0',
+            'kadar_hemoglobin' => 'required|integer|min:0',
+            'LILA' => 'required|integer|min:0',
+            'menggunakan_alat_kontrasepsi' => 'nullable|string',
+            'catin_wanita_meerokok_terpapar' => 'nullable|string',
+            'catin_pria_meerokok_terpapar' => 'nullable|string',
+            'sumber_air_minum' => 'nullable|string',
+            'fasilitas_BAB' => 'nullable|string',
+            'longitude' => 'required|numeric|between:-180,180',
+            'latitude' => 'required|numeric|between:-90,90',
+            'mendapatkan_tablet_tambah_darah' => 'nullable|string',
+            'meminum_table_tambah_darah' => 'nullable|string',
+            'penyuluhan_KIE' => 'nullable|string',
+            'fasilitas_layanan_rujukan' => 'nullable|string',
+            'fasilitas_bantuan_sosial' => 'nullable|string',
         ]);
+        
 
         $catin = Catin::findOrFail($id);
         $catin->update($request->all());
